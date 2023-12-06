@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace SimpleAccountingNew
     {
-    internal class Class1
+    public abstract class Account
         {
+        private FileManager _fileManager = new FileManager();
+        public List<Transaction> Transactions { get; set; }
+        public Account()
+            {
+            Transactions = _fileManager.LoadTransactions();
+            }
+        public abstract void AddTransaction(Transaction transaction);
+        public void Save()
+            {
+            _fileManager.SaveTransactions(Transactions);
+            }
         }
+
+
+
     }
